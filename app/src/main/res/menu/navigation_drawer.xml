@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navigation_world"
+            android:icon="@drawable/ic_world"
+            android:title="世界"
+            />
+        <item
+            android:title="2"
+            />
+        <item
+            android:title="3"
+            />
+    </group>.
+</menu>

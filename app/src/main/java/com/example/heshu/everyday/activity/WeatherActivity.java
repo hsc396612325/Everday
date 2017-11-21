@@ -1,16 +1,22 @@
 package com.example.heshu.everyday.activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -33,7 +39,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class WeatherActivity extends AppCompatActivity {
+public class WeatherActivity extends BaseActivity {
 
     private ScrollView weatherLayout;
     private TextView titleCity;
@@ -49,16 +55,13 @@ public class WeatherActivity extends AppCompatActivity {
     private ImageView bingPicImg;
     public SwipeRefreshLayout swipeRefresh;
     private String mWeatherId;
-
-
+    private Button navigationButton;
+    private DrawerLayout mDrawerLayout;
+    private NavigationView mMenuNv;
+    private TextView mOpenMenuTv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT>=21){
-            View decorView = getWindow().getDecorView();
-            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            getWindow().setStatusBarColor(Color.TRANSPARENT);
-        }
         setContentView(R.layout.activity_weather);
         initUi();
         upload();
@@ -79,7 +82,26 @@ public class WeatherActivity extends AppCompatActivity {
         bingPicImg = (ImageView)findViewById(R.id.bing_pic_img);
         swipeRefresh = (SwipeRefreshLayout)findViewById(R.id.swipe_refresh);
         swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
+        navigationButton =(Button)findViewById(R.id.navigation_button);
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        mMenuNv=(NavigationView) findViewById(R.id.nv_layout);
+        navigationButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                mDrawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
 
+        mMenuNv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                selectItem(item.getItemId());
+                // 关闭侧滑菜单
+                mDrawerLayout.closeDrawers();
+                return true;
+            }
+        });
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener(){
             @Override
             public void onRefresh() {
@@ -97,6 +119,17 @@ public class WeatherActivity extends AppCompatActivity {
                 transaction.commit();
             }
         });
+    }
+
+    private void selectItem(int itemid) {
+        switch (itemid) {
+            case R.id.navigation_world:
+                Intent intent = new Intent(WeatherActivity.this,Worldactivity.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
     }
     private void upload() {
         //加载天气信息
