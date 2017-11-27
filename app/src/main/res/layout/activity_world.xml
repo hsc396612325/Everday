@@ -9,10 +9,11 @@
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <VideoView
-            android:id="@+id/videoView"
-            android:layout_width="192dp"
-            android:layout_height="108dp"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/gradient"
+            android:fitsSystemWindows="true"
             />
         <ScrollView
             android:id="@+id/world_layout"

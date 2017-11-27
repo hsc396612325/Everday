@@ -7,7 +7,9 @@
             android:title="世界"
             />
         <item
-            android:title="2"
+            android:id="@+id/navigation_open_eyes"
+            android:icon="@drawable/ic_open_eyes"
+            android:title="开眼"
             />
         <item
             android:title="3"

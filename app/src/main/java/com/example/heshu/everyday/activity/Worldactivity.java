@@ -20,7 +20,6 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class Worldactivity extends BaseActivity {
-    private ScrollView worldLayout;
     public SwipeRefreshLayout swipeRefresh;
     private VideoView videoView ;
     @Override
@@ -31,9 +30,7 @@ public class Worldactivity extends BaseActivity {
     }
 
     private void initUI() {
-        worldLayout = (ScrollView)findViewById(R.id.world_layout);
         swipeRefresh = (SwipeRefreshLayout)findViewById(R.id.swipe_refresh);
-        videoView = (VideoView)this.findViewById(R.id.videoView );
         swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener(){
             @Override

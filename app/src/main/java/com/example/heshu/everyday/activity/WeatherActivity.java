@@ -127,6 +127,10 @@ public class WeatherActivity extends BaseActivity {
                 Intent intent = new Intent(WeatherActivity.this,Worldactivity.class);
                 startActivity(intent);
                 break;
+            case R.id.navigation_open_eyes:
+                 intent = new Intent(WeatherActivity.this,OpenEyesActivity.class);
+                startActivity(intent);
+                break;
             default:
                 break;
         }
