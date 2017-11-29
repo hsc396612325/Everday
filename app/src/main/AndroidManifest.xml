@@ -27,6 +27,7 @@
             android:exported="true" />
 
         <activity android:name=".activity.Worldactivity" />
+        <activity android:name=".activity.PlayActivity" />
         <activity android:name=".activity.OpenEyesActivity"></activity>
     </application>
 

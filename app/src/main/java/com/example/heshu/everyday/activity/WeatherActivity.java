@@ -2,8 +2,6 @@ package com.example.heshu.everyday.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -11,7 +9,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -122,10 +119,11 @@ public class WeatherActivity extends BaseActivity {
     }
 
     private void selectItem(int itemid) {
+        Intent intent;
         switch (itemid) {
             case R.id.navigation_world:
-                Intent intent = new Intent(WeatherActivity.this,Worldactivity.class);
-                startActivity(intent);
+                //intent = new Intent(WeatherActivity.this,Worldactivity.class);
+                //startActivity(intent);
                 break;
             case R.id.navigation_open_eyes:
                  intent = new Intent(WeatherActivity.this,OpenEyesActivity.class);

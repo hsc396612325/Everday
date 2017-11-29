@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.heshu.everyday.activity.OpenEyesActivity"
-    tools:showIn="@layout/activity_open_eyes">
+    tools:context="com.example.heshu.everyday.activity.PlayActivity"
+    tools:showIn="@layout/activity_play">
 
     <TextView
         android:layout_width="wrap_content"
