@@ -13,7 +13,6 @@ import com.example.heshu.everyday.view.AutoViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by heshu on 2017/11/29.
@@ -62,12 +61,12 @@ public abstract class BaseViewPagerAdapter<T> extends PagerAdapter implements Vi
     public int getCount(){ return data == null ? 0 : Integer.MAX_VALUE; }
 
     public  void destroyItem(ViewGroup container , int position , Object object){
-        container.removeView((ImageView)object);
+        container.removeView((View)object);
     }
 
     @Override
     public Object instantiateItem(ViewGroup container, final int position) {
-        ImageView view =(ImageView) LayoutInflater.from(mContent).inflate(R.layout.imageview ,container,false);
+        View view =(View) LayoutInflater.from(mContent).inflate(R.layout.activity_open_eyes_head,container,false);
 
         view.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -84,7 +83,7 @@ public abstract class BaseViewPagerAdapter<T> extends PagerAdapter implements Vi
         return view;
     }
     //加载图片的方法也是一个抽象方法
-    public abstract void loadImage(ImageView view ,int position ,T t);
+    public abstract void loadImage(View view ,int position ,T t);
 
     @Override
     public boolean isViewFromObject(View view, Object object) {

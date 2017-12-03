@@ -8,4 +8,5 @@
     <color name="secondary_text">#757575</color>
     <color name="icons">#FFFFFF</color>
     <color name="textColor">#fff</color>
+    <color name="colorLucency">#e0757575</color>
 </resources>

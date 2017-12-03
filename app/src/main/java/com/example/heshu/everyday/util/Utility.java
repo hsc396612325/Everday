@@ -6,13 +6,21 @@ import android.util.Log;
 import com.example.heshu.everyday.db.City;
 import com.example.heshu.everyday.db.County;
 import com.example.heshu.everyday.db.Province;
-import com.example.heshu.everyday.gson.Air;
-import com.example.heshu.everyday.gson.Weather;
+import com.example.heshu.everyday.gson.openeyes.Item;
+import com.example.heshu.everyday.gson.weather.Air;
+import com.example.heshu.everyday.gson.weather.Weather;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by heshu on 2017/11/14.
@@ -116,6 +124,29 @@ public class Utility {
             air.aqi = new JSONObject(city).getString("aqi");
             air.pm25 = new JSONObject(city).getString("pm25");
             return air;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 解析开眼返回的JSON数据
+     */
+    public static List<Item> handleItemListResponse(String response){
+        try {
+            List itemList = new ArrayList<>();;
+            JsonObject jsonObject = new JsonParser().parse(response).getAsJsonObject();
+            JsonArray jsonArray = jsonObject.getAsJsonArray("itemList");
+            Gson gson = new Gson();
+
+            //循环遍历
+            for (JsonElement user : jsonArray) {
+                //通过反射 得到UserBean.class
+                Item item = gson.fromJson(user,Item.class);
+                itemList.add(item);
+            }
+            return itemList;
         }catch (Exception e){
             e.printStackTrace();
         }

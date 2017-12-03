@@ -22,6 +22,7 @@
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
             <!--封面图片-->
+
             <ImageView
                 android:id="@+id/imageview"
                 android:layout_width="match_parent"
@@ -32,26 +33,23 @@
                 app:layout_collapseParallaxMultiplier="0.7"
                 android:fitsSystemWindows="true"/>
 
+
+
+            <VideoView
+                android:id="@+id/video_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.7"
+                android:fitsSystemWindows="true"
+                android:visibility="gone"/>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/gradient"
                 android:fitsSystemWindows="true"
                 />
-            <!--视频及弹幕控件-->
-            <FrameLayout
-                android:id="@+id/video_danmu"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_collapseMode="parallax"
-                app:layout_collapseParallaxMultiplier="0.7"
-                android:fitsSystemWindows="true"
-                android:visibility="gone">
-                <VideoView
-                    android:id="@+id/videoview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </FrameLayout>
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -78,6 +76,7 @@
                         android:text="立即播放"
                         android:layout_gravity="center_vertical"
                         />
+
                 </android.support.v7.widget.ButtonBarLayout>
             </android.support.v7.widget.Toolbar>
 
@@ -96,4 +95,40 @@
         app:layout_anchorGravity="bottom|end"
         android:src="@drawable/ic_play" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/pause_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|end"
+        android:src="@drawable/ic_pause"
+        android:visibility="invisible"
+        />
+
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/more_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_gravity="bottom|end"
+        app:fab_labelStyle="@style/fab_lebels_style"
+        android:src="@drawable/ic_more">
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/esc_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_size="mini"
+            app:fab_title="全屏播放"
+            />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/skip_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_size="mini"
+            app:fab_title="打开原网页"
+            />
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
 </android.support.design.widget.CoordinatorLayout>

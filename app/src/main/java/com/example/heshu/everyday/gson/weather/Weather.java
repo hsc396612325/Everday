@@ -1,6 +1,5 @@
-package com.example.heshu.everyday.gson;
+package com.example.heshu.everyday.gson.weather;
 
-import com.example.heshu.everyday.db.Province;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

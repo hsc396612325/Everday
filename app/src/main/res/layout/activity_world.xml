@@ -4,23 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.heshu.everyday.activity.Worldactivity">
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/gradient"
-            android:fitsSystemWindows="true"
-            />
-        <ScrollView
-            android:id="@+id/world_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none"
-            android:overScrollMode="never">
-        </ScrollView>
-    </android.support.v4.widget.SwipeRefreshLayout>
+    tools:context="com.example.heshu.everyday.activity.WorldActivity">
+
 </android.support.constraint.ConstraintLayout>

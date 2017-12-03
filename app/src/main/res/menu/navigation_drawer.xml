@@ -2,17 +2,37 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/navigation_weather"
+            android:icon="@drawable/ic_weather"
+            android:title="阴晴"
+            />
+        <item
             android:id="@+id/navigation_world"
             android:icon="@drawable/ic_world"
-            android:title="世界"
-            />
+            android:title="世界"/>
         <item
             android:id="@+id/navigation_open_eyes"
             android:icon="@drawable/ic_open_eyes"
             android:title="开眼"
             />
         <item
-            android:title="3"
+            android:id="@+id/navigation_article"
+            android:icon="@drawable/ic_article"
+            android:title="观止"
             />
-    </group>.
+
+        <item
+            android:icon="@drawable/ic_zhihu"
+            android:title="知乎"/>
+
+        <item
+            android:icon="@drawable/ic_picture"
+            android:title="美图"
+            />
+        <item
+            android:title="设置"
+            android:icon="@drawable/ic_setting"
+            />
+    </group>
+
 </menu>

@@ -8,15 +8,18 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
-import android.support.annotation.IntDef;
+import android.view.View;
+import android.widget.Toast;
 
-import com.example.heshu.everyday.gson.Air;
-import com.example.heshu.everyday.gson.Weather;
+import com.example.heshu.everyday.activity.OpenEyesActivity;
+import com.example.heshu.everyday.gson.openeyes.Item;
+import com.example.heshu.everyday.gson.weather.Air;
+import com.example.heshu.everyday.gson.weather.Weather;
 import com.example.heshu.everyday.util.HttpUtil;
 import com.example.heshu.everyday.util.Utility;
 
 import java.io.IOException;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -36,6 +39,8 @@ public class AutoUpdateService extends Service {
         updateWeather();
         updateBingPic();
         updateAir();
+        updateHomeVideo();
+        updateHotVideo();
         AlarmManager manager = (AlarmManager)getSystemService(ALARM_SERVICE);
         int anHour = 8*60*60*1000;
         long triggerAtTime = SystemClock.elapsedRealtime() +anHour;
@@ -114,5 +119,41 @@ public class AutoUpdateService extends Service {
                 }
             });
         }
+    }
+
+    private void updateHomeVideo(){
+        String homeItemListUrl = "http://baobab.kaiyanapp.com/api/v4/tabs/selected";
+        HttpUtil.sendOKHttpRequest(homeItemListUrl, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String responseString = response.body().string();
+                SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(AutoUpdateService.this).edit();
+                editor.putString("homeItemList",responseString);
+                editor.apply();
+            }
+        });
+    }
+
+    private void updateHotVideo(){
+        String hotItemListUrl = "http://baobab.kaiyanapp.com/api/v4/discovery/hot";
+        HttpUtil.sendOKHttpRequest(hotItemListUrl, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String responseString = response.body().string();
+                SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(AutoUpdateService.this).edit();
+                editor.putString("hotItemList",responseString);
+                editor.apply();
+            }
+        });
     }
 }

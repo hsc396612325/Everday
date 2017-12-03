@@ -23,10 +23,10 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.heshu.everyday.R;
 import com.example.heshu.everyday.fragment.ChooseAreaFragment;
-import com.example.heshu.everyday.gson.Air;
-import com.example.heshu.everyday.gson.Forecast;
-import com.example.heshu.everyday.gson.Lifestyle;
-import com.example.heshu.everyday.gson.Weather;
+import com.example.heshu.everyday.gson.weather.Air;
+import com.example.heshu.everyday.gson.weather.Forecast;
+import com.example.heshu.everyday.gson.weather.Lifestyle;
+import com.example.heshu.everyday.gson.weather.Weather;
 import com.example.heshu.everyday.util.HttpUtil;
 import com.example.heshu.everyday.util.Utility;
 
@@ -121,12 +121,18 @@ public class WeatherActivity extends BaseActivity {
     private void selectItem(int itemid) {
         Intent intent;
         switch (itemid) {
-            case R.id.navigation_world:
-                //intent = new Intent(WeatherActivity.this,Worldactivity.class);
+            case R.id.navigation_weather:
+                //intent = new Intent(WeatherActivity.this,WorldActivity.class);
                 //startActivity(intent);
+                mDrawerLayout.closeDrawers();
+                break;
+            case R.id.navigation_world:
+                //intent = new Intent(WeatherActivity.this,WorldActivity.class);
+                //startActivity(intent);
+                mDrawerLayout.closeDrawers();
                 break;
             case R.id.navigation_open_eyes:
-                 intent = new Intent(WeatherActivity.this,OpenEyesActivity.class);
+                intent = new Intent(WeatherActivity.this,OpenEyesActivity.class);
                 startActivity(intent);
                 break;
             default:

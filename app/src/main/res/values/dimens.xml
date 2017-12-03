@@ -1,5 +1,5 @@
 <resources>
-    <dimen name="app_bar_height">250dp</dimen>
+    <dimen name="app_bar_height">203dp</dimen>
     <dimen name="fab_margin">25dp</dimen>
-    <dimen name="text_margin">25dp</dimen>
+    <dimen name="text_margin">26dp</dimen>
 </resources>

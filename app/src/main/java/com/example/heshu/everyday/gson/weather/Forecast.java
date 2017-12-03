@@ -1,4 +1,4 @@
-package com.example.heshu.everyday.gson;
+package com.example.heshu.everyday.gson.weather;
 
 import com.google.gson.annotations.SerializedName;
 
