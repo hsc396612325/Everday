@@ -10,6 +10,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -133,6 +134,14 @@ public class WeatherActivity extends BaseActivity {
                 break;
             case R.id.navigation_open_eyes:
                 intent = new Intent(WeatherActivity.this,OpenEyesActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.navigation_article:
+                intent = new Intent(WeatherActivity.this,ArticleActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.navigation_zhuhu:
+                intent = new Intent(WeatherActivity.this,ZhiHuActivity.class);
                 startActivity(intent);
                 break;
             default:

@@ -4,13 +4,16 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ScrollView;
 
 /**
  * Created by heshu on 2017/12/3.
  */
 
-public class VerticalScrollView extends ScrollView {
+public  class VerticalScrollView extends ScrollView {
+
+    private IScrollChangedListener mScrollChangedListener;
 
     public VerticalScrollView(Context context) {
         super(context);
@@ -22,6 +25,10 @@ public class VerticalScrollView extends ScrollView {
 
     public VerticalScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+    }
+
+    public void setScrollViewListener(IScrollChangedListener scrollViewListener) {
+        this.mScrollChangedListener = scrollViewListener;
     }
 
     @TargetApi(21)
@@ -56,5 +63,22 @@ public class VerticalScrollView extends ScrollView {
         }
 
         return super.onInterceptTouchEvent(ev);
+    }
+
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        View view = (View)getChildAt(getChildCount()-1);
+        int d = view.getBottom();
+        d -= (getHeight()+getScrollY());
+        if(d==0) {
+            if (mScrollChangedListener != null)
+                mScrollChangedListener.onScrolledToBottom();
+        }
+        else
+            super.onScrollChanged(l,t,oldl,oldt);
+    }
+
+    public interface IScrollChangedListener {
+        void onScrolledToBottom();
     }
 }

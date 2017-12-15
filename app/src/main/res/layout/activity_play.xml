@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -56,6 +57,14 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay">
+                <Button
+                    android:id="@+id/return_button"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/ic_return"
+                    android:layout_gravity="left"
+                    />
                 <!--自定义带图片的立即播放按钮-->
                 <android.support.v7.widget.ButtonBarLayout
                     android:id="@+id/playButton"
@@ -120,6 +129,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_size="mini"
+            app:fab_icon="@drawable/ic_esc"
             app:fab_title="全屏播放"
             />
 
@@ -128,7 +138,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_size="mini"
-            app:fab_title="打开原网页"
+            app:fab_icon="@drawable/ic_skip"
+            app:fab_title="打开网页"
             />
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 </android.support.design.widget.CoordinatorLayout>

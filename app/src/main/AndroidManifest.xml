@@ -13,28 +13,46 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity">
+        <activity
+            android:launchMode="singleTask"
+            android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.WeatherActivity" />
+        <activity
+            android:launchMode="singleTask"
+            android:name=".activity.WeatherActivity" />
 
         <service
+            android:launchMode="singleTask"
             android:name=".service.AutoUpdateService"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".activity.WorldActivity" />
-        <activity android:name=".activity.ArticleActivity"/>
         <activity
+            android:launchMode="singleTask"
+            android:name=".activity.WorldActivity" />
+        <activity
+            android:launchMode="singleTask"
+            android:name=".activity.ArticleActivity"/>
+        <activity
+            android:launchMode="singleTask"
             android:name=".activity.PlayActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.OpenEyesActivity" />
-        <activity android:name=".activity.WebActivity"></activity>
+        <activity
+            android:launchMode="singleTask"
+            android:name=".activity.OpenEyesActivity" />
+        <activity
+            android:launchMode="singleTask"
+            android:name=".activity.WebActivity"/>
+        <activity
+            android:launchMode="singleTask"
+            android:name=".activity.ZhiHuActivity"/>
+
+        <activity android:name=".activity.ZhihuDetailsActivity"/>
     </application>
 
 </manifest>

@@ -2,13 +2,21 @@ package com.example.heshu.everyday.util;
 
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.ImageView;
 
+import com.example.heshu.everyday.Data.Zhihu;
 import com.example.heshu.everyday.db.City;
 import com.example.heshu.everyday.db.County;
 import com.example.heshu.everyday.db.Province;
+import com.example.heshu.everyday.gson.article.Article;
+import com.example.heshu.everyday.gson.article.Data;
 import com.example.heshu.everyday.gson.openeyes.Item;
+import com.example.heshu.everyday.gson.openeyes.ItemList;
 import com.example.heshu.everyday.gson.weather.Air;
 import com.example.heshu.everyday.gson.weather.Weather;
+import com.example.heshu.everyday.gson.zhihu.Before;
+import com.example.heshu.everyday.gson.zhihu.News;
+import com.example.heshu.everyday.gson.zhihu.ZhihuDetails;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -133,20 +141,56 @@ public class Utility {
     /**
      * 解析开眼返回的JSON数据
      */
-    public static List<Item> handleItemListResponse(String response){
+    public static ItemList handleItemListResponse(String response){
         try {
-            List itemList = new ArrayList<>();;
-            JsonObject jsonObject = new JsonParser().parse(response).getAsJsonObject();
-            JsonArray jsonArray = jsonObject.getAsJsonArray("itemList");
-            Gson gson = new Gson();
-
-            //循环遍历
-            for (JsonElement user : jsonArray) {
-                //通过反射 得到UserBean.class
-                Item item = gson.fromJson(user,Item.class);
-                itemList.add(item);
-            }
+            ItemList itemList = new Gson().fromJson(response,ItemList.class);
+            Log.d("itemList",itemList.itemList.get(0).type);
             return itemList;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 解析观止返回的文章数据
+     */
+    public static Data handleArticleResponse(String response){
+        try {
+            Log.d("JSON",response);
+            return new Gson().fromJson(response,Data.class);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return  null;
+    }
+
+    /**
+     * 解析知乎返回的热门消息
+     */
+    public static News handleNewsResponse(String response){
+        try {
+            Log.d("JSON",response);
+            return new Gson().fromJson(response,News.class);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return  null;
+    }
+
+    public static Before handleBeforeResponse(String response){
+        try {
+            Log.d("JSONBefore",response);
+            return new Gson().fromJson(response,Before.class);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return  null;
+    }
+
+    public static ZhihuDetails handleZhihuDetailsResponse(String response){
+        try {
+            return new Gson().fromJson(response,ZhihuDetails.class);
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -10,6 +10,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 
 import android.support.design.widget.Snackbar;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ButtonBarLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -17,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
@@ -43,6 +45,7 @@ public class PlayActivity extends BaseActivity {
     private ImageView imageView;
     private Video video;
     private boolean playFlag = false;
+    private Button returnButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +69,14 @@ public class PlayActivity extends BaseActivity {
         videoView = (VideoView)findViewById(R.id.video_view);
         textView = (TextView)findViewById(R.id.play_text);
         imageView = (ImageView)findViewById(R.id.imageview);
+
+        returnButton = (Button)findViewById(R.id.return_button);
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         textView.setText(video.getVideoDetails());
 
@@ -155,6 +166,7 @@ public class PlayActivity extends BaseActivity {
             Toast.makeText( PlayActivity.this, "播放完成了", Toast.LENGTH_SHORT).show();
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
