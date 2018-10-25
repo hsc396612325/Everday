@@ -4,12 +4,11 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.AutoScrollHelper;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 
-import com.example.heshu.everyday.Adapter.BaseViewPagerAdapter;
+import com.example.heshu.everyday.adapter.BaseViewPagerAdapter;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -32,7 +31,7 @@ public class AutoViewPager extends ViewPager {
         super(context,attra);
     }
 
-    public void init(AutoViewPager viewPager,BaseViewPagerAdapter adapter){
+    public void init(AutoViewPager viewPager, BaseViewPagerAdapter adapter){
         adapter.init(viewPager,adapter);
     }
 
@@ -66,7 +65,7 @@ public class AutoViewPager extends ViewPager {
         }
     };
 
-    private final static class AutoHandler extends Handler{
+    private final static class AutoHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);

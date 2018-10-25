@@ -1,10 +1,9 @@
-package com.example.heshu.everyday.Adapter;
+package com.example.heshu.everyday.adapter;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.heshu.everyday.Data.Zhihu;
 import com.example.heshu.everyday.R;
-import com.example.heshu.everyday.activity.PlayActivity;
 import com.example.heshu.everyday.activity.ZhihuDetailsActivity;
-import com.example.heshu.everyday.view.AutoScrollViewPager;
+import com.example.heshu.everyday.gson.zhihu.Zhihu;
 
 import java.util.List;
 
@@ -35,7 +32,7 @@ public class ZhihuRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
         ITEM3
     }
 
-    public ZhihuRecyclerAdapter(Context context,List<Zhihu> zhihuList){
+    public ZhihuRecyclerAdapter(Context context, List<Zhihu> zhihuList){
         mContext = context;
         mZhihuList = zhihuList;
         mLayoutInflater = LayoutInflater.from(context);
@@ -45,9 +42,9 @@ public class ZhihuRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if(viewType == ITEM_TYPE.ITEM2.ordinal()){
-            return new Item2ViewHolder(mLayoutInflater.inflate(R.layout.activity_zhihu_item2, parent, false));
+            return new Item2ViewHolder(mLayoutInflater.inflate(R.layout.fragment_zhihu_item, parent, false));
         }else if(viewType == ITEM_TYPE.ITEM3.ordinal()){
-            return new Item3ViewHolder(mLayoutInflater.inflate(R.layout.activity_zhihu_item3, parent, false));
+            return new Item3ViewHolder(mLayoutInflater.inflate(R.layout.fragment_zhihu_item2, parent, false));
         }else {
             return null;
         }
@@ -62,7 +59,7 @@ public class ZhihuRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
             Glide.with(mContext).load(mZhihuList.get(position)
                     .getImagesUrl()).into(((Item3ViewHolder) holder).ZHihuImage);
 
-            ((Item3ViewHolder) holder).cardView.setOnClickListener(new View.OnClickListener(){
+            ((Item3ViewHolder) holder).cardView.setOnClickListener(new View.OnClickListener(){  //点击事件
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext,ZhihuDetailsActivity.class);
@@ -85,7 +82,7 @@ public class ZhihuRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public int getItemCount() {
-        return mZhihuList == null ? 0 : mZhihuList.size();
+        return mZhihuList.size();
     }
 
     //item2 的ViewHolder

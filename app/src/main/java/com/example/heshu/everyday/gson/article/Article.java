@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Article {
+
     @SerializedName("date")
     public Date date;
 

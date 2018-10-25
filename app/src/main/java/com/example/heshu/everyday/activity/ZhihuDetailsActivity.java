@@ -6,14 +6,12 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.heshu.everyday.Data.Video;
 import com.example.heshu.everyday.R;
 import com.example.heshu.everyday.gson.zhihu.ZhihuDetails;
 import com.example.heshu.everyday.util.HttpUtil;
@@ -29,7 +27,7 @@ import okhttp3.Response;
  * Created by heshu on 2017/12/10.
  */
 
-public class ZhihuDetailsActivity  extends BaseActivity{
+public class ZhihuDetailsActivity extends BaseActivity {
     private String ID ;
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private CollapsingToolbarLayoutState state;
@@ -101,7 +99,7 @@ public class ZhihuDetailsActivity  extends BaseActivity{
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(ZhihuDetailsActivity.this,"获取消息失败",Toast.LENGTH_SHORT);
+                        Toast.makeText(ZhihuDetailsActivity.this,"获取消息失败", Toast.LENGTH_SHORT);
                     }
                 });
             }
@@ -125,12 +123,15 @@ public class ZhihuDetailsActivity  extends BaseActivity{
 
         StrHtml = zhihuDetails.body.replaceFirst("<div class=\\\"img-place-holder\\\"></div>","");
 
-        mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.loadDataWithBaseURL("file:///android_asset/","<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\" />"+StrHtml,"text/html","utf_8",null);
+
+        mWebView.loadDataWithBaseURL("file:///android_asset/","<link rel=\"stylesheet\" href=\"  "+ zhihuDetails.css.get(0)+ ">" +StrHtml,"text/html","UTF-8",null);
+
+        Log.d("css", "showUI: "+zhihuDetails.css);
 
         Glide.with(ZhihuDetailsActivity.this).load(zhihuDetails.detailsImage).into(mImageView);
         mTextTitle.setText(zhihuDetails.detailsTitle);
     }
+
     private enum CollapsingToolbarLayoutState {
         EXPANDED,
         COLLAPSED,

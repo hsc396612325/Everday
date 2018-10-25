@@ -55,7 +55,6 @@ public  class VerticalScrollView extends ScrollView {
             case MotionEvent.ACTION_MOVE:
                 final float deltaX = Math.abs(x - mDownPosX);
                 final float deltaY = Math.abs(y - mDownPosY);
-                // 这里是否拦截的判断依据是左右滑动，读者可根据自己的逻辑进行是否拦截
 
                 if (deltaX > deltaY) {// 左右滑动不拦截
                     return false;

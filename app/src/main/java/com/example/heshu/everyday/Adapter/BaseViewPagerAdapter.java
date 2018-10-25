@@ -1,4 +1,4 @@
-package com.example.heshu.everyday.Adapter;
+package com.example.heshu.everyday.adapter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -6,7 +6,6 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.example.heshu.everyday.R;
 import com.example.heshu.everyday.view.AutoViewPager;
@@ -27,13 +26,13 @@ public abstract class BaseViewPagerAdapter<T> extends PagerAdapter implements Vi
 
 
 
-    public BaseViewPagerAdapter(Context context ,List<T> data,OnAutoViewPagerItemClickListener listener){
+    public BaseViewPagerAdapter(Context context , List<T> data, OnAutoViewPagerItemClickListener listener){
         this.mContent = context;
         this.data = data;
         this.listener = listener;
     }
 
-    public void init(AutoViewPager viewPager,BaseViewPagerAdapter adapter){
+    public void init(AutoViewPager viewPager, BaseViewPagerAdapter adapter){
         mView = viewPager;
         mView.setAdapter(this);
         mView.addOnPageChangeListener(this);
@@ -66,7 +65,7 @@ public abstract class BaseViewPagerAdapter<T> extends PagerAdapter implements Vi
 
     @Override
     public Object instantiateItem(ViewGroup container, final int position) {
-        View view =(View) LayoutInflater.from(mContent).inflate(R.layout.activity_open_eyes_head,container,false);
+        View view =(View) LayoutInflater.from(mContent).inflate(R.layout.view_pager_head,container,false);
 
         view.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -83,7 +82,7 @@ public abstract class BaseViewPagerAdapter<T> extends PagerAdapter implements Vi
         return view;
     }
     //加载图片的方法也是一个抽象方法
-    public abstract void loadImage(View view ,int position ,T t);
+    public abstract void loadImage(View view , int position , T t);
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
@@ -104,6 +103,6 @@ public abstract class BaseViewPagerAdapter<T> extends PagerAdapter implements Vi
     }
     //图片点击事件接口
     public interface OnAutoViewPagerItemClickListener<T> {
-        void onItemClick(int position,T t);
+        void onItemClick(int position, T t);
     }
 }

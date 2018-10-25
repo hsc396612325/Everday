@@ -2,33 +2,23 @@ package com.example.heshu.everyday.util;
 
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.ImageView;
 
-import com.example.heshu.everyday.Data.Zhihu;
+
 import com.example.heshu.everyday.db.City;
 import com.example.heshu.everyday.db.County;
 import com.example.heshu.everyday.db.Province;
-import com.example.heshu.everyday.gson.article.Article;
 import com.example.heshu.everyday.gson.article.Data;
-import com.example.heshu.everyday.gson.openeyes.Item;
-import com.example.heshu.everyday.gson.openeyes.ItemList;
 import com.example.heshu.everyday.gson.weather.Air;
+import com.example.heshu.everyday.gson.weather.BasicList;
 import com.example.heshu.everyday.gson.weather.Weather;
 import com.example.heshu.everyday.gson.zhihu.Before;
 import com.example.heshu.everyday.gson.zhihu.News;
 import com.example.heshu.everyday.gson.zhihu.ZhihuDetails;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by heshu on 2017/11/14.
@@ -102,7 +92,6 @@ public class Utility {
         }
         return false;
     }
-
     /**
      * 将返回的Json数据解析成Weather实体类
      */
@@ -122,8 +111,9 @@ public class Utility {
      * 将Json解析成Air类
      */
     public static Air handleAirResponse(String response){
+
         Air air  = new Air();
-        try{;
+        try{
             JSONObject jsonObject = new JSONObject(response);
             JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
             String HeWeather = jsonArray.getJSONObject(0).toString();
@@ -131,6 +121,7 @@ public class Utility {
             String city = new JSONObject(aqi).getString("city");
             air.aqi = new JSONObject(city).getString("aqi");
             air.pm25 = new JSONObject(city).getString("pm25");
+
             return air;
         }catch (Exception e){
             e.printStackTrace();
@@ -139,19 +130,36 @@ public class Utility {
     }
 
     /**
-     * 解析开眼返回的JSON数据
+     * 将Json解析成BasicList类
      */
-    public static ItemList handleItemListResponse(String response){
+    public static BasicList handleBasicListResponse(String response) {
+
         try {
-            ItemList itemList = new Gson().fromJson(response,ItemList.class);
-            Log.d("itemList",itemList.itemList.get(0).type);
-            return itemList;
-        }catch (Exception e){
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather6");
+            String BasicListContent = jsonArray.getJSONObject(0).toString();
+            Log.d("11111", "handleBasicListResponse: "+ BasicListContent);
+            return new Gson().fromJson(BasicListContent , BasicList.class);
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
-
+//
+//    /**
+//     * 解析开眼返回的JSON数据
+//     */
+//    public static ItemList handleItemListResponse(String response){
+//        try {
+//            ItemList itemList = new Gson().fromJson(response,ItemList.class);
+//            Log.d("itemList",itemList.itemList.get(0).type);
+//            return itemList;
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
+//
     /**
      * 解析观止返回的文章数据
      */

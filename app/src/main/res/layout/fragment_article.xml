@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/fragment_article_title" />
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.example.heshu.everyday.view.VerticalScrollView
+            android:id="@+id/article_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/fragment_article"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/fragment_article_content_title" />
+
+                <include layout="@layout/fragment_article_content" />
+            </LinearLayout>
+        </com.example.heshu.everyday.view.VerticalScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/more_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_more"
+        app:fab_addButtonColorNormal="@color/colorLucency"
+        app:fab_labelStyle="@style/fab_lebels_style">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/today_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/colorLucency"
+            app:fab_icon="@drawable/ic_today"
+            app:fab_size="mini"
+            app:fab_title="今日" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/random_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/colorLucency"
+            app:fab_icon="@drawable/ic_random"
+            app:fab_size="mini"
+            app:fab_title="随机" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/yesterday_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/colorLucency"
+            app:fab_icon="@drawable/ic_yesterday"
+            app:fab_size="mini"
+            app:fab_title="前一天" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/tomorrow_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/colorLucency"
+            app:fab_icon="@drawable/ic_tomorrow"
+            app:fab_size="mini"
+            app:fab_title="后一天" />
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+</RelativeLayout>

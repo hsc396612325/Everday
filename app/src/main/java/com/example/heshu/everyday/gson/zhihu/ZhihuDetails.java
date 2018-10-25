@@ -2,6 +2,8 @@ package com.example.heshu.everyday.gson.zhihu;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by heshu on 2017/12/12.
  */
@@ -16,4 +18,7 @@ public class ZhihuDetails {
     @SerializedName("image")
     public String detailsImage;
 
+
+    @SerializedName("css")
+    public List<String> css;
 }

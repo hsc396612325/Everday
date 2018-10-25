@@ -4,22 +4,21 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.ViewGroup;
-import android.view.accessibility.AccessibilityEvent;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.example.heshu.everyday.Adapter.BaseViewPagerAdapter;
 import com.example.heshu.everyday.R;
+import com.example.heshu.everyday.adapter.BaseViewPagerAdapter;
 
 /**
  * Created by heshu on 2017/11/29.
  */
 
- public class AutoScrollViewPager  extends RelativeLayout{
+ public class AutoScrollViewPager extends RelativeLayout {
     private AutoViewPager mViewPager;
 
-    private  Context mContext;
+    private Context mContext;
 
     private LinearLayout layout;
 
@@ -45,7 +44,7 @@ import com.example.heshu.everyday.R;
         }
     }
 
-    public  AutoViewPager getViewPager(){return  mViewPager;}
+    public AutoViewPager getViewPager(){return  mViewPager;}
 
     public void initPointView(int size){
         layout = new LinearLayout(mContext);
@@ -64,7 +63,7 @@ import com.example.heshu.everyday.R;
             layout.addView(imageView);
         }
 
-        LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.addRule(ALIGN_PARENT_BOTTOM);
         layoutParams.addRule(ALIGN_PARENT_RIGHT);
         layoutParams.setMargins(12, 20, 12, 20);

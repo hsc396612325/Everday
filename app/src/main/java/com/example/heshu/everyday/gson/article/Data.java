@@ -9,4 +9,6 @@ import com.google.gson.annotations.SerializedName;
 public class Data {
     @SerializedName("data")
     public Article article;
+
+
 }
