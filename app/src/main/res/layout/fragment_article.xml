@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.example.heshu.everyday.view.VerticalScrollView
+        <com.example.heshu.everyday.common.view.VerticalScrollView
             android:id="@+id/article_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -27,7 +27,7 @@
 
                 <include layout="@layout/fragment_article_content" />
             </LinearLayout>
-        </com.example.heshu.everyday.view.VerticalScrollView>
+        </com.example.heshu.everyday.common.view.VerticalScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>
 
 

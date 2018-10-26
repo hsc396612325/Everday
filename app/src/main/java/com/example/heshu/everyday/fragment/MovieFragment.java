@@ -1,9 +1,6 @@
 package com.example.heshu.everyday.fragment;
 
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,12 +10,11 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.heshu.everyday.R;
-import com.example.heshu.everyday.util.App;
+import com.example.heshu.everyday.common.util.App;
 
 /**
  * Created by heshu on 2018/5/9.

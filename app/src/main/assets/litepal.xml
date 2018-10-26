@@ -5,8 +5,8 @@
     <version value = "1"/>
 
     <list>
-        <mapping class = "com.example.heshu.everyday.db.Province"/>
-        <mapping class = "com.example.heshu.everyday.db.City"/>
-        <mapping class = "com.example.heshu.everyday.db.County"/>
+        <mapping class = "com.example.heshu.everyday.weather.db.Province"/>
+        <mapping class = "com.example.heshu.everyday.weather.db.City"/>
+        <mapping class = "com.example.heshu.everyday.weather.db.County"/>
     </list>
 </litepal>

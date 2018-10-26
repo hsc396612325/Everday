@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.heshu.everyday.view.VerticalSwipeRefreshLayout
+    <com.example.heshu.everyday.common.view.VerticalSwipeRefreshLayout
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.example.heshu.everyday.view.VerticalScrollView
+        <com.example.heshu.everyday.common.view.VerticalScrollView
             android:id="@+id/openeyes_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -22,7 +22,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <com.example.heshu.everyday.view.AutoScrollViewPager
+                <com.example.heshu.everyday.common.view.AutoScrollViewPager
                     android:id="@+id/zhihu_viewPager"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"/>
@@ -39,8 +39,8 @@
                 </RelativeLayout>
 
             </LinearLayout>
-        </com.example.heshu.everyday.view.VerticalScrollView>
-    </com.example.heshu.everyday.view.VerticalSwipeRefreshLayout>
+        </com.example.heshu.everyday.common.view.VerticalScrollView>
+    </com.example.heshu.everyday.common.view.VerticalSwipeRefreshLayout>
 
 
 </RelativeLayout>
