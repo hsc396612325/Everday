@@ -1,21 +1,18 @@
-package com.example.heshu.everyday.eyepetizer;
+package com.example.heshu.everyday.eyepetizer.View;
 
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.example.heshu.everyday.R;
+import com.example.heshu.everyday.eyepetizer.View.HomeBanner;
 
 /**
  * Created by heshu on 2018/10/26.
@@ -139,6 +136,12 @@ public class PullRecyclerView extends RecyclerView {
                         }
 
                         setLoadingScale(fl); //缩放view
+
+                        ViewGroup.LayoutParams layoutParams = firstView.getLayoutParams();
+                        if (layoutParams.height < 0 || tempWidth < 0) {
+//                            originalFirstItemHeight = getChildViewHolder(firstView)
+                        }
+
                     }
                 }
                 break;
