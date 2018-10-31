@@ -38,8 +38,6 @@ public class HomeBannerItem extends FrameLayout {
 
     public HomeBannerItem(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
-
     }
 
     private void initView() {

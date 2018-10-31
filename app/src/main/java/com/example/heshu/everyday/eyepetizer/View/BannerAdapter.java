@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.example.heshu.everyday.eyepetizer.bean.Item;
 import com.example.heshu.everyday.weather.db.Province;
 
+import java.lang.ref.PhantomReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,14 +17,15 @@ import java.util.List;
  */
 
 public class BannerAdapter extends PagerAdapter {
-    private int itemCount = 1;
-    private List<Item> dadas = new ArrayList();
+    public int itemCount = 1;
+    public List<Item> datas = new ArrayList();
     private List<HomeBannerItem> viewList = new ArrayList<>();
+
 
     @Override
 
     public int getCount() {
-        if (dadas == null)
+        if (datas == null)
             return 0;
         else return Integer.MAX_VALUE;
     }
@@ -47,7 +49,7 @@ public class BannerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         if (viewList.size() <= itemCount) {
             for (int i = 0; i < itemCount;i++) {
-                HomeBannerItem homeBannerItem =new HomeBannerItem(container.getContext(), dadas.get(i));
+                HomeBannerItem homeBannerItem =new HomeBannerItem(container.getContext(), datas.get(i));
                 viewList.add(homeBannerItem);
             }
         }
