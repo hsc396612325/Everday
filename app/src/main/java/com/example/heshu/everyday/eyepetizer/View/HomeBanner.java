@@ -136,7 +136,7 @@ public class HomeBanner extends FrameLayout {
     private void setIndicators(List<Item> bannerDatas) {
         bannerIndicators.removeAllViews();
         List<Item> bannerDatas1 = bannerDatas;
-        for(bann :bannerDatas){
+        for(Item bann :bannerDatas){
             Indicator indicator = new Indicator(getContext());
             MarginLayoutParams  layoutParams  = new LinearLayout.LayoutParams(DisplayManager.getRealHeight(20),DisplayManager.getRealHeight(20));
             layoutParams.leftMargin = DisplayManager.getRealWidth(10);

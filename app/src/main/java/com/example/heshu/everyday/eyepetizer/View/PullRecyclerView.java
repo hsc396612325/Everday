@@ -3,11 +3,13 @@ package com.example.heshu.everyday.eyepetizer.View;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -139,13 +141,46 @@ public class PullRecyclerView extends RecyclerView {
 
                         ViewGroup.LayoutParams layoutParams = firstView.getLayoutParams();
                         if (layoutParams.height < 0 || tempWidth < 0) {
-//                            originalFirstItemHeight = getChildViewHolder(firstView)
-                        }
+                            originalFirstItemHeight = getChildViewHolder(firstView).itemView.getHeight();
+                            originalFirstItemWeight = getChildViewHolder(firstView).itemView.getWidth();
+                            layoutParams.height = originalFirstItemHeight;
+                            tempWidth = originalFirstItemWeight;
+                            firstView.setLayoutParams(layoutParams);
+                        }else {
+                            float dY = e.getY() -deleaY;
+                            float f11 = e.getY() -constDownY;
 
+                            float ratio = (float) (1f/(0.004 * 11 + 1));
+                            dY = dY * ratio;
+                            layoutParams.height = (Math.max((int)(layoutParams.height + dY), originalFirstItemHeight));
+                            tempWidth = (Math.max((int)(tempWidth + dY * originalFirstItemWeight / originalFirstItemHeight), originalFirstItemWeight));
+                            downY = (int)e.getY();
+                            firstView.setLayoutParams(layoutParams);
+
+                            FrameLayout  relativeLayout = (FrameLayout )firstView.getChildAt(0);
+                            ViewPager viewpager = (ViewPager)relativeLayout.getChildAt(0) ;
+                            LayoutParams viewpagerLayoutParams = (LayoutParams)viewpager.getLayoutParams();
+                            viewpagerLayoutParams.height = layoutParams.height;
+                            viewpagerLayoutParams.width = tempWidth;
+                            viewpager.setLayoutParams(viewpagerLayoutParams) ;
+
+                            dx = viewpagerLayoutParams.width - originalFirstItemWeight;
+
+                            adjustViewPager(viewpager, dx);
+                        }
+                        return true;
                     }
                 }
                 break;
-            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_UP: {
+
+                canRefresh = false;
+                isFirstMove = true;
+                constUpY = e.getY();
+                if (getChildAt(0) instanceof HomeBanner) {
+                    smoothRecover();//松手后回复
+                }
+            }
                 break;
         }
         return super.onTouchEvent(e);
