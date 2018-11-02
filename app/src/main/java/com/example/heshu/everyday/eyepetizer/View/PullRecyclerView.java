@@ -1,5 +1,7 @@
 package com.example.heshu.everyday.eyepetizer.View;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.Nullable;
@@ -34,7 +36,7 @@ public class PullRecyclerView extends RecyclerView {
     private boolean isFirstMove = true; //是否为第一次滑动
     private int tempWidth = -1;
     private int dx = 0;
-    //homeBanner: HomeBanner? = null 轮播图
+    private HomeBanner homeBanner;//轮播图
 
     private boolean willRefresh = false;//松手后可刷新
 
@@ -179,6 +181,7 @@ public class PullRecyclerView extends RecyclerView {
                 constUpY = e.getY();
                 if (getChildAt(0) instanceof HomeBanner) {
                     smoothRecover();//松手后回复
+
                 }
             }
                 break;
@@ -209,5 +212,75 @@ public class PullRecyclerView extends RecyclerView {
         viewGroup.addView(loadingView);
     }
 
+    /**
+     * 松手后恢复
+     */
+    private void smoothRecover() {
 
+        if (originalFirstItemHeight != 0) {
+            homeBanner = (HomeBanner) getChildAt(0) ;
+            ViewGroup.LayoutParams layoutParams = homeBanner.getLayoutParams();
+            homeBanner.setLayoutParams (layoutParams);
+
+
+            FrameLayout relativeLayout = (FrameLayout)homeBanner.getChildAt(0);
+            ViewPager viewpager = (ViewPager)relativeLayout.getChildAt(0) ;
+            LayoutParams viewpagerLayoutParams = (LayoutParams)viewpager.getLayoutParams();
+            if (loading.getScaleX() == 1f) {
+                willRefresh = true;
+            }
+            var dYForView = layoutParams!!.height - originalFirstItemHeight
+
+//            layoutParams!!.height, originalFirstItemHeight
+            val homeBannerAnimator = ValueAnimator.ofInt(layoutParams.height, originalFirstItemHeight)
+            homeBannerAnimator
+                    .addUpdateListener { animation ->
+                    layoutParams.height = animation.animatedValue as Int
+                tempWidth = (animation.animatedValue as Int * (originalFirstItemWeight * 1f / originalFirstItemHeight)).toInt()
+                homeBanner?.layoutParams = layoutParams
+
+
+                viewpagerLayoutParams.height = layoutParams.height
+                dx = viewpagerLayoutParams.width - originalFirstItemWeight
+
+                viewpagerLayoutParams.width = tempWidth
+                viewpager.layoutParams = viewpagerLayoutParams
+
+                dx = viewpagerLayoutParams.width - originalFirstItemWeight
+
+                adjustViewPager(viewpager, dx)
+
+                if (!willRefresh) {
+                    var distanceY: Float = (layoutParams.height - originalFirstItemHeight) * 1f//算出来的是从view增加的高度到0的值，需要把它映射到手指滑动的高度到0
+                    var fl = distanceY * ((constUpY - constDownY) / dYForView)//映射
+                    setLoadingScale(fl)
+
+                }
+
+            }
+            homeBannerAnimator.addListener(object : Animator.AnimatorListener {
+                override fun onAnimationRepeat(animation: Animator?) {
+                }
+
+                override fun onAnimationCancel(animation: Animator?) {
+                }
+
+                override fun onAnimationStart(animation: Animator?) {
+                }
+
+                override fun onAnimationEnd(animation: Animator?) {
+                    if (willRefresh) {
+                        onRefreshListner?.onRefresh()
+                        loading.startAnimation(loadAnimation)
+                    } else {
+                        hideLoading()
+                    }
+                }
+            })
+            homeBannerAnimator.setDuration(100)
+            homeBannerAnimator.start()
+        }
+
+
+    }
 }
